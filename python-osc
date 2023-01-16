@@ -1,3 +1,6 @@
+"""Small example OSC client
+
+
 https://github.com/attwad/python-osc
 
 """
@@ -10,7 +13,7 @@ from pythonosc import udp_client
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
-  parser.add_argument("--ip", default="169.254.1.1",
+  parser.add_argument("--ip", default="10.3.1.1",
       help="The ip of the OSC server")
   parser.add_argument("--port", type=int, default=9000,
       help="The port the OSC server is listening on")
@@ -19,5 +22,71 @@ if __name__ == "__main__":
   client = udp_client.SimpleUDPClient(args.ip, args.port)
 
   for x in range(1):
-    client.send_message("/outputs/digital/16", 0)
+
+   client.send_message("/outputs/digital/15", 0 )
     time.sleep(1)
+
+    client.send_message("/outputs/digital/16", 0 )
+    time.sleep(1)
+    
+
+
+if __name__ == "__main__":
+  parser = argparse.ArgumentParser()
+  parser.add_argument("--ip", default="10.3.1.2",
+      help="The ip of the OSC server")
+  parser.add_argument("--port", type=int, default=9000,
+      help="The port the OSC server is listening on")
+  args = parser.parse_args()
+
+  client = udp_client.SimpleUDPClient(args.ip, args.port)
+
+  for x in range(1):
+
+    client.send_message("/outputs/digital/15", 0 )
+    time.sleep(1)
+
+    client.send_message("/outputs/digital/16", 0 )
+    time.sleep(1)
+   
+      
+  
+      
+ 
+  """
+  
+    off - all attract
+    client.send_message("/outputs/digital/16", 0 )
+    time.sleep(1)
+    
+    off - all repel
+    client.send_message("/outputs/digital/15", 0 )
+    time.sleep(1)
+
+   slow pulse - other dancer attract 
+    client.send_message("/outputs/pwm/frequency/16", 0 )
+    time.sleep(1)
+    
+    slow pulse - other dancer repel
+    client.send_message("/outputs/pwm/frequency/15", 0 )
+    time.sleep(1)
+
+    fast pulse - audience attract
+    client.send_message("/outputs/pwm/frequency/16", 10 )
+    time.sleep(1)
+    
+    fast pulse - audience repel
+    client.send_message("/outputs/pwm/frequency/15", 10 )
+    time.sleep(1)
+    
+    constant - Isadora attract
+    client.send_message("/outputs/pwm/frequency/16", 100 )
+    time.sleep(1)
+    
+    constant - Isadora repel
+    client.send_message("/outputs/pwm/frequency/15", 100 )
+    time.sleep(1)
+    
+    
+  """
+    
